@@ -1,0 +1,7040 @@
+{
+  "ons": [
+    {
+      "unit": "on",
+      "sources": "(_, e) => e.currentTarget.checked",
+      "source": "tsToggle settings/state",
+      "clock": "tsToggleChange",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(state, e) => {\n  if (e.currentTarget.checked) return false;\n  return state;\n}",
+      "source": "tsToggle settings/state",
+      "clock": "flowToggleChange",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(_, e) => e.currentTarget.checked",
+      "source": "typeHoverToggle settings/state",
+      "clock": "typeHoverToggleChange",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "_ => true",
+      "source": "autoScrollLog settings/state",
+      "clock": "enableAutoScroll",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "_ => false",
+      "source": "autoScrollLog settings/state",
+      "clock": "disableAutoScroll",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(list, record) => [...list, record]",
+      "source": "listeners realm/state",
+      "clock": "realmListener",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(list, {\n  type,\n  target,\n  fn\n}) => list.filter(record => {\n  if (record.fn === fn && record.type === type && record.target === target) return false;\n  return true;\n})",
+      "source": "listeners realm/state",
+      "clock": "realmRemoveListener",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(state, id) => [...state, id]",
+      "source": "intervals realm/state",
+      "clock": "realmInterval",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(state, removed) => state.filter(id => id !== removed)",
+      "source": "intervals realm/state",
+      "clock": "realmClearInterval",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(state, id) => [...state, id]",
+      "source": "timeouts realm/state",
+      "clock": "realmTimeout",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(state, removed) => state.filter(id => id !== removed)",
+      "source": "timeouts realm/state",
+      "clock": "realmClearTimeout",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "({\n  domain,\n  ...rest\n}, e) => {\n  if (domain.includes(e)) return;\n  return { ...rest,\n    domain: [...domain, e]\n  };\n}",
+      "source": "stats realm/state",
+      "clock": "realmInvoke → * →? * →? * →? * →? *",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "({\n  component,\n  ...rest\n}, e) => {\n  if (component.includes(e)) return;\n  return { ...rest,\n    component: [...component, e]\n  };\n}",
+      "source": "stats realm/state",
+      "clock": "realmComponent",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(stats, {\n  active\n}) => {\n  if (!active) return stats;\n  return {\n    event: [],\n    store: [],\n    effect: [],\n    domain: [],\n    component: []\n  };\n}",
+      "source": "stats realm/state",
+      "clock": "realmStatus",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(stats, unit) => {\n  if (_effectorRoot.is.store(unit, {\n    loc: {\n      file: _effectorFileName,\n      line: 126,\n      column: 8\n    },\n    sid: \"xuq5mm\"\n  })) {\n    return { ...stats,\n      store: [...stats.store.filter(store => store !== unit)]\n    };\n  }\n\n  if (_effectorRoot.is.event(unit, {\n    loc: {\n      file: _effectorFileName,\n      line: 132,\n      column: 8\n    },\n    sid: \"y9klnd\"\n  })) {\n    return { ...stats,\n      event: [...stats.event.filter(event => event !== unit)]\n    };\n  }\n\n  if (_effectorRoot.is.effect(unit, {\n    loc: {\n      file: _effectorFileName,\n      line: 138,\n      column: 8\n    },\n    sid: \"ycvd7j\"\n  })) {\n    return { ...stats,\n      effect: [...stats.effect.filter(effect => effect !== unit)]\n    };\n  }\n\n  return stats;\n}",
+      "source": "stats realm/state",
+      "clock": "realmClearNode",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => store.defaultState",
+      "source": "stats realm/state",
+      "clock": "changeSources",
+      "isReset": true
+    },
+    {
+      "unit": "on",
+      "sources": "(state, token) => token",
+      "source": "Local(github-token) lib/local-store",
+      "clock": "setToken",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => store.defaultState",
+      "source": "Local(github-token) lib/local-store",
+      "clock": "logout",
+      "isReset": true
+    },
+    {
+      "unit": "on",
+      "sources": "() => store.defaultState",
+      "source": "Local(github-token) lib/local-store",
+      "clock": "login",
+      "isReset": true
+    },
+    {
+      "unit": "on",
+      "sources": "(_, id) => id",
+      "source": "$currentShareId share/state",
+      "clock": "setCurrentShareId",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(_, value) => value",
+      "source": "$shareDescription share/state",
+      "clock": "handleInput → *",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => store.defaultState",
+      "source": "$shareDescription share/state",
+      "clock": "handleKeyDown → * →? *",
+      "isReset": true
+    },
+    {
+      "unit": "on",
+      "sources": "(logs, log) => logs.concat(log)",
+      "source": "$logs features/logs/model",
+      "clock": "logHappened → *",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(logs, active) => {\n  if (!active) return logs;\n  return [];\n}",
+      "source": "$logs features/logs/model",
+      "clock": "realmActiveChanged",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => store.defaultState",
+      "source": "$logs features/logs/model",
+      "clock": "sourcesChanged",
+      "isReset": true
+    },
+    {
+      "unit": "on",
+      "sources": "() => store.defaultState",
+      "source": "$logs features/logs/model",
+      "clock": "versionChanged",
+      "isReset": true
+    },
+    {
+      "unit": "on",
+      "sources": "() => store.defaultState",
+      "source": "$logs features/logs/model",
+      "clock": "logsClear",
+      "isReset": true
+    },
+    {
+      "unit": "on",
+      "sources": "(_, typechecker) => {\n  if (typechecker === 'typescript') return 'repl.ts';\n  return 'repl.js';\n}",
+      "source": "filename evaluator/index",
+      "clock": "typechecker",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(_, p) => p",
+      "source": "version editor/state",
+      "clock": "selectVersion",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => true",
+      "source": "autoScrollLog settings/state",
+      "clock": "autoScrollEnableClicked",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => false",
+      "source": "autoScrollLog settings/state",
+      "clock": "autoScrollDisableClicked",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(state, event) => {\n  var _ref, _event$compositeName$, _event$compositeName;\n\n  let result;\n  if (state.__shouldReset === true) result = {};else result = { ...state\n  };\n  result[\"\".concat(event.kind, \" '\").concat((_ref = (_event$compositeName$ = (_event$compositeName = event.compositeName) === null || _event$compositeName === void 0 ? void 0 : _event$compositeName.fullName) !== null && _event$compositeName$ !== void 0 ? _event$compositeName$ : event.shortName) !== null && _ref !== void 0 ? _ref : event.id, \"'\")] = event.graphite.seq;\n  return result;\n}",
+      "source": "graphite graphite/domain",
+      "clock": "realmInvoke → * →? *",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(state, event) => {\n  var _ref, _event$compositeName$, _event$compositeName;\n\n  let result;\n  if (state.__shouldReset === true) result = {};else result = { ...state\n  };\n  result[\"\".concat(event.kind, \" '\").concat((_ref = (_event$compositeName$ = (_event$compositeName = event.compositeName) === null || _event$compositeName === void 0 ? void 0 : _event$compositeName.fullName) !== null && _event$compositeName$ !== void 0 ? _event$compositeName$ : event.shortName) !== null && _ref !== void 0 ? _ref : event.id, \"'\")] = event.graphite.seq;\n  return result;\n}",
+      "source": "graphite graphite/domain",
+      "clock": "realmInvoke → * →? * →? *",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(state, event) => {\n  var _ref, _event$compositeName$, _event$compositeName;\n\n  let result;\n  if (state.__shouldReset === true) result = {};else result = { ...state\n  };\n  result[\"\".concat(event.kind, \" '\").concat((_ref = (_event$compositeName$ = (_event$compositeName = event.compositeName) === null || _event$compositeName === void 0 ? void 0 : _event$compositeName.fullName) !== null && _event$compositeName$ !== void 0 ? _event$compositeName$ : event.shortName) !== null && _ref !== void 0 ? _ref : event.id, \"'\")] = event.graphite.seq;\n  return result;\n}",
+      "source": "graphite graphite/domain",
+      "clock": "realmInvoke → * →? * →? * →? *",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "e => {\n  e.__shouldReset = true;\n  return e;\n}",
+      "source": "graphite graphite/domain",
+      "clock": "reset graphite state",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => 'editor'",
+      "source": "Local(current-tab) lib/local-store",
+      "clock": "showEditor",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => 'graphite'",
+      "source": "Local(current-tab) lib/local-store",
+      "clock": "showGraphite",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => 'dom'",
+      "source": "Local(current-tab) lib/local-store",
+      "clock": "showDOM",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => 'share'",
+      "source": "Local(current-tab) lib/local-store",
+      "clock": "showShare",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => 'settings'",
+      "source": "Local(current-tab) lib/local-store",
+      "clock": "showSettings",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => 'gist'",
+      "source": "Local(current-tab) lib/local-store",
+      "clock": "showGist",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => 'errors'",
+      "source": "Local(current-tab) lib/local-store",
+      "clock": "showErrors",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(state, isDesktop) => {\n  if (state === 'editor' && isDesktop) return 'dom';\n  if (state === 'outline' && isDesktop) return 'dom';\n  return state;\n}",
+      "source": "Local(current-tab) lib/local-store",
+      "clock": "$isQueryMatches",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(state, slug) => \"\".concat(location.origin, \"/\").concat(slug)",
+      "source": "sharedUrl share/controller",
+      "clock": "slug",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "(_, event) => event.matches",
+      "source": "$isQueryMatches lib/media-query",
+      "clock": "queryChanged",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => 'console'",
+      "source": "tab components/SecondanaryTabs",
+      "clock": "showConsole",
+      "isReset": false
+    },
+    {
+      "unit": "on",
+      "sources": "() => 'outline'",
+      "source": "tab components/SecondanaryTabs",
+      "clock": "showOutline",
+      "isReset": false
+    }
+  ],
+  "samples": [
+    {
+      "unit": "sample",
+      "source": {
+        "type": "shape",
+        "shape": {"code": "sourceCode", "parser": "typechecker → *"},
+        "values": ["sourceCode", "typechecker → *"]
+      },
+      "clock": "clock",
+      "target": "prettier",
+      "file": "settings/init",
+      "node": {
+        "meta": {
+          "op": "sample",
+          "sample": "store",
+          "snap": {
+            "type": "sample",
+            "sourceIds": ["4b", "5c"],
+            "targetId": "4k",
+            "targeting": "existed unit",
+            "clockType": {"type": "explicit", "id": "5f"},
+            "sourceType": {
+              "type": "shape",
+              "map": {"code": "4b", "parser": "5c"}
+            },
+            "file": "settings/init"
+          }
+        }
+      }
+    },
+    {
+      "unit": "sample",
+      "source": {"type": "single", "value": "sharesWithUser"},
+      "clock": "$currentShareId",
+      "target": "$shareDescription",
+      "file": "share/init",
+      "node": {
+        "meta": {
+          "op": "sample",
+          "sample": "store",
+          "snap": {
+            "type": "sample",
+            "sourceIds": ["8o"],
+            "targetId": "7w",
+            "targeting": "existed unit",
+            "clockType": {"type": "explicit", "id": "7u"},
+            "sourceType": {"type": "single", "id": "8o"},
+            "file": "share/init"
+          }
+        }
+      }
+    },
+    {
+      "unit": "sample",
+      "source": {"type": "single", "value": "sharesWithUser"},
+      "clock": "addShare",
+      "target": "Local(csrf)",
+      "file": "share/init",
+      "node": {
+        "meta": {
+          "op": "sample",
+          "sample": "store",
+          "snap": {
+            "type": "sample",
+            "sourceIds": ["8o"],
+            "targetId": "7s",
+            "targeting": "existed unit",
+            "clockType": {"type": "explicit", "id": "3p"},
+            "sourceType": {"type": "single", "id": "8o"},
+            "file": "share/init"
+          }
+        }
+      }
+    },
+    {
+      "unit": "sample",
+      "source": {"type": "single", "value": "sharesWithUser"},
+      "clock": "removeShare",
+      "target": "Local(csrf)",
+      "file": "share/init",
+      "node": {
+        "meta": {
+          "op": "sample",
+          "sample": "store",
+          "snap": {
+            "type": "sample",
+            "sourceIds": ["8o"],
+            "targetId": "7s",
+            "targeting": "existed unit",
+            "clockType": {"type": "explicit", "id": "3o"},
+            "sourceType": {"type": "single", "id": "8o"},
+            "file": "share/init"
+          }
+        }
+      }
+    },
+    {
+      "unit": "sample",
+      "source": {"type": "single", "value": "typeHoverToggle"},
+      "clock": "codeCursorActivity",
+      "target": "bw",
+      "file": "editor/init",
+      "node": {
+        "meta": {
+          "op": "sample",
+          "sample": "store",
+          "snap": {
+            "type": "sample",
+            "sourceIds": ["56"],
+            "targetId": "bw",
+            "targeting": "new unit",
+            "clockType": {"type": "explicit", "id": "3c"},
+            "sourceType": {"type": "single", "id": "56"},
+            "file": "editor/init"
+          }
+        }
+      }
+    },
+    {
+      "unit": "sample",
+      "source": {
+        "type": "shape",
+        "shape": {"slug": "slug", "sharedUrl": "sharedUrl"},
+        "values": ["slug", "sharedUrl"]
+      },
+      "clock": "clickShare",
+      "target": "sharing url",
+      "file": "share/controller",
+      "node": {
+        "meta": {
+          "op": "sample",
+          "sample": "store",
+          "snap": {
+            "type": "sample",
+            "sourceIds": ["cv", "cx"],
+            "targetId": "d1",
+            "targeting": "existed unit",
+            "clockType": {"type": "explicit", "id": "d0"},
+            "sourceType": {
+              "type": "shape",
+              "map": {"slug": "cv", "sharedUrl": "cx"}
+            },
+            "file": "share/controller"
+          }
+        }
+      }
+    }
+  ],
+  "forwards": [
+    {
+      "unit": "forward",
+      "source": "done → *",
+      "target": "sourceCode editor/state",
+      "file": "settings/init",
+      "node": {
+        "meta": {
+          "op": "forward",
+          "config": {
+            "loc": {"file": "/src/settings/init.tsx", "line": 74, "column": 0},
+            "sid": "5hs8cm"
+          },
+          "file": "settings/init",
+          "unitId": "-1",
+          "sid": "5hs8cm",
+          "createdBy": "forward",
+          "depsMap": {"from": "5i", "to": "4b"}
+        }
+      }
+    },
+    {
+      "unit": "forward",
+      "source": "handleKeyDown → * →? * →? *",
+      "target": "shareCode",
+      "file": "share/init",
+      "node": {
+        "meta": {
+          "op": "forward",
+          "config": {
+            "loc": {"file": "/src/share/init.tsx", "line": 22, "column": 0},
+            "sid": "-jd3dwf"
+          },
+          "file": "share/init",
+          "unitId": "-2",
+          "sid": "-jd3dwf",
+          "createdBy": "forward",
+          "depsMap": {"from": "8l", "to": "87"}
+        }
+      }
+    },
+    {
+      "unit": "forward",
+      "source": "evalEffect",
+      "target": "reset graphite state",
+      "file": "editor/init",
+      "node": {
+        "meta": {
+          "op": "forward",
+          "config": {
+            "loc": {"file": "/src/editor/init.tsx", "line": 61, "column": 0},
+            "sid": "-7nocbq"
+          },
+          "file": "editor/init",
+          "unitId": "-3",
+          "sid": "-7nocbq",
+          "createdBy": "forward",
+          "depsMap": {"from": "2y", "to": "9m"}
+        }
+      }
+    },
+    {
+      "unit": "forward",
+      "source": "changeSources",
+      "target": "sourceCode editor/state",
+      "file": "editor/init",
+      "node": {
+        "meta": {
+          "op": "forward",
+          "config": {
+            "loc": {"file": "/src/editor/init.tsx", "line": 111, "column": 0},
+            "sid": "-qkjjd8"
+          },
+          "file": "editor/init",
+          "unitId": "-4",
+          "sid": "-qkjjd8",
+          "createdBy": "forward",
+          "depsMap": {"from": "39", "to": "4b"}
+        }
+      }
+    },
+    {
+      "unit": "forward",
+      "source": "autoScrollLog settings/state",
+      "target": "autoScrollLogChanged",
+      "file": "init",
+      "node": {
+        "meta": {
+          "op": "forward",
+          "config": {
+            "loc": {"file": "/src/init.tsx", "line": 20, "column": 0},
+            "sid": "-o4b4y9"
+          },
+          "file": "init",
+          "unitId": "-5",
+          "sid": "-o4b4y9",
+          "createdBy": "forward",
+          "depsMap": {"from": "5a", "to": "9u"}
+        }
+      }
+    },
+    {
+      "unit": "forward",
+      "source": "changeSources",
+      "target": "sourcesChanged",
+      "file": "init",
+      "node": {
+        "meta": {
+          "op": "forward",
+          "config": {
+            "loc": {"file": "/src/init.tsx", "line": 21, "column": 0},
+            "sid": "-o3rccw"
+          },
+          "file": "init",
+          "unitId": "-6",
+          "sid": "-o3rccw",
+          "createdBy": "forward",
+          "depsMap": {"from": "39", "to": "9r"}
+        }
+      }
+    },
+    {
+      "unit": "forward",
+      "source": "selectVersion",
+      "target": "versionChanged",
+      "file": "init",
+      "node": {
+        "meta": {
+          "op": "forward",
+          "config": {
+            "loc": {"file": "/src/init.tsx", "line": 22, "column": 0},
+            "sid": "-o37jrj"
+          },
+          "file": "init",
+          "unitId": "-7",
+          "sid": "-o37jrj",
+          "createdBy": "forward",
+          "depsMap": {"from": "3a", "to": "9s"}
+        }
+      }
+    },
+    {
+      "unit": "forward",
+      "source": "realmStatus → *",
+      "target": "realmActiveChanged",
+      "file": "init",
+      "node": {
+        "meta": {
+          "op": "forward",
+          "config": {
+            "loc": {"file": "/src/init.tsx", "line": 23, "column": 0},
+            "sid": "-o2nr66"
+          },
+          "file": "init",
+          "unitId": "-8",
+          "sid": "-o2nr66",
+          "createdBy": "forward",
+          "depsMap": {"from": "c0", "to": "9t"}
+        }
+      }
+    },
+    {
+      "unit": "forward",
+      "source": "from",
+      "target": "shareCode",
+      "file": "share/controller",
+      "node": {
+        "meta": {
+          "op": "forward",
+          "config": {
+            "loc": {
+              "file": "/src/share/controller.tsx",
+              "line": 20,
+              "column": 0
+            },
+            "sid": "ym8usr"
+          },
+          "file": "share/controller",
+          "unitId": "-9",
+          "sid": "ym8usr",
+          "createdBy": "forward",
+          "depsMap": {"from": "ct", "to": "87"}
+        }
+      }
+    }
+  ],
+  "primeUnits": [
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "37",
+          "file": "editor/index",
+          "namedChilds": ["36"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "35",
+          "file": "editor/index",
+          "namedChilds": ["34"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "3m",
+          "file": "editor/index",
+          "namedChilds": ["3l"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "3k",
+          "file": "editor/index",
+          "namedChilds": ["3j"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "3z",
+          "file": "share/index",
+          "namedChilds": ["3y"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "3x",
+          "file": "share/index",
+          "namedChilds": ["3w"]
+        }
+      }
+    },
+    {
+      "name": "version editor/state",
+      "initialValue": "master",
+      "unit": "store",
+      "type": "string",
+      "sid": "-fq19v0",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "version",
+          "sid": "-fq19v0",
+          "named": null,
+          "processed": true,
+          "unitId": "47",
+          "file": "editor/state",
+          "createdBy": "createStore",
+          "namedChilds": ["46"]
+        }
+      }
+    },
+    {
+      "name": "packageVersions editor/state",
+      "initialValue": [
+        "master",
+        "20.11.2",
+        "20.11.1",
+        "20.11.0",
+        "20.10.2",
+        "20.10.1",
+        "20.10.0",
+        "20.9.1",
+        "20.9.0",
+        "20.8.5",
+        "20.8.4",
+        "20.8.3",
+        "20.8.2",
+        "20.8.1",
+        "20.8.0",
+        "20.7.1",
+        "20.7.0",
+        "20.6.2",
+        "20.6.1",
+        "20.6.0",
+        "20.5.0",
+        "20.4.4",
+        "20.4.3",
+        "20.4.2",
+        "20.4.1",
+        "20.4.0",
+        "20.3.2",
+        "20.3.1",
+        "20.3.0",
+        "20.2.1",
+        "20.2.0",
+        "20.1.2",
+        "20.1.1",
+        "20.1.0",
+        "20.0.0",
+        "19.1.0",
+        "19.0.0",
+        "0.18.11",
+        "0.18.10",
+        "0.18.9",
+        "0.18.8",
+        "0.18.7",
+        "0.18.7-rc.1",
+        "0.18.6",
+        "0.18.5",
+        "0.18.5-beta.6",
+        "0.18.5-beta.5",
+        "0.18.5-beta.4",
+        "0.18.5-beta.3",
+        "0.18.5-beta.2",
+        "0.18.5-beta.1",
+        "0.18.4",
+        "0.18.3",
+        "0.18.3-beta.2",
+        "0.18.3-beta.1",
+        "0.18.2",
+        "0.18.1",
+        "0.18.0",
+        "0.18.0-rc.3",
+        "0.18.0-rc.2",
+        "0.18.0-rc.1",
+        "0.18.0-beta.11",
+        "0.18.0-beta.10",
+        "0.18.0-beta.9",
+        "0.18.0-beta.8",
+        "0.18.0-beta.7",
+        "0.18.0-beta.6",
+        "0.18.0-beta.5",
+        "0.18.0-beta.4",
+        "0.18.0-beta.3",
+        "0.18.0-beta.2",
+        "0.18.0-beta.1",
+        "0.17.7",
+        "0.17.6",
+        "0.17.5",
+        "0.17.4",
+        "0.17.4-rc.0",
+        "0.17.3",
+        "0.17.2",
+        "0.17.1",
+        "0.17.0",
+        "0.17.0-rc.4",
+        "0.17.0-rc.3",
+        "0.17.0-rc.2",
+        "0.17.0-rc.1",
+        "0.17.0-rc.0",
+        "0.16.1-beta.17",
+        "0.16.1-beta.16",
+        "0.16.1-beta.15",
+        "0.16.1-beta.14",
+        "0.16.1-beta.13",
+        "0.16.1-beta.12",
+        "0.16.1-beta.11",
+        "0.16.1-beta.10",
+        "0.16.1-beta.9",
+        "0.16.1-beta.8",
+        "0.16.1-beta.7",
+        "0.16.1-beta.6",
+        "0.16.1-beta.5",
+        "0.16.1-beta.4",
+        "0.16.1-beta.3",
+        "0.16.1-beta.2",
+        "0.16.1-beta.1",
+        "0.16.1-beta.0",
+        "0.16.0",
+        "0.16.0-rc.5",
+        "0.16.0-rc.4",
+        "0.16.0-rc.3",
+        "0.16.0-rc.2",
+        "0.16.0-rc.1",
+        "0.15.0-rc.2",
+        "0.15.0-rc.1",
+        "0.14.0",
+        "0.14.0-rc.8",
+        "0.14.0-rc.7",
+        "0.14.0-rc.6",
+        "0.14.0-rc.5",
+        "0.14.0-rc.4",
+        "0.14.0-rc.3",
+        "0.14.0-rc.2",
+        "0.14.0-rc.1",
+        "0.13.0",
+        "0.13.0-rc.5",
+        "0.13.0-rc.4",
+        "0.13.0-rc.3",
+        "0.13.0-rc.2",
+        "0.13.0-rc.1",
+        "0.13.0-rc.0"
+      ],
+      "unit": "store",
+      "type": "object",
+      "sid": "-dgcy1v",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "packageVersions",
+          "sid": "-dgcy1v",
+          "named": null,
+          "processed": true,
+          "unitId": "49",
+          "file": "editor/state",
+          "createdBy": "createStore",
+          "namedChilds": ["48"]
+        }
+      }
+    },
+    {
+      "name": "sourceCode editor/state",
+      "initialValue": "import React from 'react'\nimport ReactDOM from 'react-dom'\nimport {createEffect, createStore, createEvent, forward} from 'effector'\nimport {useStore, useList} from 'effector-react'\n\nconst portalMounted = createEvent()\nconst portalUnmounted = createEvent()\n\nconst $portals = createStore({})\n  .on(portalMounted, (store, {name, children}) =>\n    Object.assign(store, {[name]: children})\n  )\n  .on(portalUnmounted, (store, {name}) => {\n    const newStore = {...store}\n    delete newStore[name]\n    return newStore\n  })\n\nfunction PortalOut({name}) {\n  return useStoreMap({\n    store: $portals,\n    keys: [name],\n    fn: (portals, [name]) => portals[name] || null,\n  })\n}\n\nconst PortalIn = createGate()\nconst prevPortalIn = PortalIn.state.map(console.log)\n\nsample({\n  source: PortalIn.state,\n  clock: PortalIn.open,\n  target: portalMounted,\n})\n\nsample({\n  source: PortalIn.state,\n  clock: PortalIn.close,\n  target: portalUnmounted,\n})\n\n//portalMounted.watch(console.log)\n//portalUnmounted.watch(console.log)\n\nfunction Child() {\n  const [show, setShow] = React.useState(false)\n  return (\n    <>\n      <button onClick={() => setShow(!show)}>display div</button>\n      {show ? 'show' : 'hide' }\n      {show && (\n        <PortalIn name=\"out\">\n          <div>hi man</div>\n        </PortalIn>\n      )}\n    </>\n  )\n}\nfunction App() {\n  return (\n    <>\n      <Child />\n      <PortalOut name=\"out\" />\n    </>\n  )\n}\n\nReactDOM.render(<App />, document.getElementById('root'))\n",
+      "unit": "store",
+      "type": "string",
+      "sid": "1ou56y",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "sourceCode",
+          "sid": "1ou56y",
+          "named": null,
+          "processed": true,
+          "unitId": "4b",
+          "file": "editor/state",
+          "createdBy": "createStore",
+          "namedChilds": ["4a"]
+        }
+      }
+    },
+    {
+      "name": "compiledCode editor/state",
+      "initialValue": "",
+      "unit": "store",
+      "type": "string",
+      "sid": "1ax78e",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "compiledCode",
+          "sid": "1ax78e",
+          "named": null,
+          "processed": true,
+          "unitId": "4d",
+          "file": "editor/state",
+          "createdBy": "createStore",
+          "namedChilds": ["4c"]
+        }
+      }
+    },
+    {
+      "name": "codeError editor/state",
+      "initialValue": {"isError": false, "error": null, "stackFrames": []},
+      "unit": "store",
+      "type": "object",
+      "sid": "-j9syop",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "codeError",
+          "sid": "-j9syop",
+          "named": null,
+          "processed": true,
+          "unitId": "4f",
+          "file": "editor/state",
+          "createdBy": "createStore",
+          "namedChilds": ["4e"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "4t",
+          "file": "settings/index",
+          "namedChilds": ["4s"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "4r",
+          "file": "settings/index",
+          "namedChilds": ["4q"]
+        }
+      }
+    },
+    {
+      "name": "flowToggle settings/state",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": "-1wng4p",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "flowToggle",
+          "sid": "-1wng4p",
+          "named": null,
+          "processed": true,
+          "unitId": "52",
+          "file": "settings/state",
+          "createdBy": "domain.createStore",
+          "namedChilds": ["51"]
+        }
+      }
+    },
+    {
+      "name": "tsToggle settings/state",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": "j0avt5",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "tsToggle",
+          "sid": "j0avt5",
+          "named": null,
+          "processed": true,
+          "unitId": "54",
+          "file": "settings/state",
+          "createdBy": "domain.createStore",
+          "namedChilds": ["53"]
+        }
+      }
+    },
+    {
+      "name": "typeHoverToggle settings/state",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": "nvbtgv",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "typeHoverToggle",
+          "sid": "nvbtgv",
+          "named": null,
+          "processed": true,
+          "unitId": "56",
+          "file": "settings/state",
+          "createdBy": "domain.createStore",
+          "namedChilds": ["55"]
+        }
+      }
+    },
+    {
+      "name": "typechecker settings/state",
+      "initialValue": null,
+      "unit": "store",
+      "type": "object",
+      "sid": "-9z3uel",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "typechecker",
+          "sid": "-9z3uel",
+          "named": null,
+          "depsMap": {"source": ["54", "52"]},
+          "processed": true,
+          "unitId": "58",
+          "file": "settings/state",
+          "createdBy": "combine",
+          "namedChilds": ["57"]
+        }
+      }
+    },
+    {
+      "name": "autoScrollLog settings/state",
+      "initialValue": true,
+      "unit": "store",
+      "type": "boolean",
+      "sid": "-spw2r5",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "autoScrollLog",
+          "sid": "-spw2r5",
+          "named": null,
+          "processed": true,
+          "unitId": "5a",
+          "file": "settings/state",
+          "createdBy": "createStore",
+          "namedChilds": ["59"]
+        }
+      }
+    },
+    {
+      "name": "typechecker → *",
+      "initialValue": "babel",
+      "unit": "store",
+      "type": "string",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "typechecker → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5c",
+          "createdBy": "store.map",
+          "namedChilds": ["5b"]
+        }
+      }
+    },
+    {
+      "name": "pending → *",
+      "initialValue": true,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5e",
+          "createdBy": "store.map",
+          "namedChilds": ["5d"]
+        }
+      }
+    },
+    {
+      "name": "intervals realm/state",
+      "initialValue": [],
+      "unit": "store",
+      "type": "object",
+      "sid": "nxuc3m",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "intervals",
+          "sid": "nxuc3m",
+          "named": null,
+          "processed": true,
+          "unitId": "66",
+          "file": "realm/state",
+          "createdBy": "createStore",
+          "namedChilds": ["65"]
+        }
+      }
+    },
+    {
+      "name": "timeouts realm/state",
+      "initialValue": [],
+      "unit": "store",
+      "type": "object",
+      "sid": "-adbb5t",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "timeouts",
+          "sid": "-adbb5t",
+          "named": null,
+          "processed": true,
+          "unitId": "68",
+          "file": "realm/state",
+          "createdBy": "createStore",
+          "namedChilds": ["67"]
+        }
+      }
+    },
+    {
+      "name": "listeners realm/state",
+      "initialValue": [],
+      "unit": "store",
+      "type": "object",
+      "sid": "g9jtfi",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "listeners",
+          "sid": "g9jtfi",
+          "named": null,
+          "processed": true,
+          "unitId": "6a",
+          "file": "realm/state",
+          "createdBy": "createStore",
+          "namedChilds": ["69"]
+        }
+      }
+    },
+    {
+      "name": "stats realm/state",
+      "initialValue": {
+        "event": [],
+        "store": [],
+        "effect": [],
+        "domain": [],
+        "component": []
+      },
+      "unit": "store",
+      "type": "object",
+      "sid": "-qz5lnq",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "stats",
+          "sid": "-qz5lnq",
+          "named": null,
+          "processed": true,
+          "unitId": "6c",
+          "file": "realm/state",
+          "createdBy": "createStore",
+          "namedChilds": ["6b"]
+        }
+      }
+    },
+    {
+      "name": "Local(csrf) lib/local-store",
+      "initialValue": "",
+      "unit": "store",
+      "type": "string",
+      "sid": "-z0r7nn",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "Local(csrf)",
+          "sid": "-z0r7nn",
+          "named": null,
+          "processed": true,
+          "unitId": "6e",
+          "file": "lib/local-store",
+          "createdBy": "createStore",
+          "namedChilds": ["6d"]
+        }
+      }
+    },
+    {
+      "name": "Local(github-token) lib/local-store",
+      "initialValue": null,
+      "unit": "store",
+      "type": "object",
+      "sid": "-z0r7nn",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "Local(github-token)",
+          "sid": "-z0r7nn",
+          "named": null,
+          "processed": true,
+          "unitId": "6g",
+          "file": "lib/local-store",
+          "createdBy": "createStore",
+          "namedChilds": ["6f"]
+        }
+      }
+    },
+    {
+      "name": "Local(github-user) lib/local-store",
+      "initialValue": {
+        "databaseId": null,
+        "avatarUrl": "",
+        "name": "",
+        "url": ""
+      },
+      "unit": "store",
+      "type": "object",
+      "sid": "-z0r7nn",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "Local(github-user)",
+          "sid": "-z0r7nn",
+          "named": null,
+          "processed": true,
+          "unitId": "6i",
+          "file": "lib/local-store",
+          "createdBy": "createStore",
+          "namedChilds": ["6h"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "6w",
+          "file": "github/init",
+          "namedChilds": ["6v"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "6u",
+          "file": "github/init",
+          "namedChilds": ["6t"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "76",
+          "file": "github/init",
+          "namedChilds": ["75"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "74",
+          "file": "github/init",
+          "namedChilds": ["73"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "7g",
+          "file": "github/init",
+          "namedChilds": ["7f"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "7e",
+          "file": "github/init",
+          "namedChilds": ["7d"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "7q",
+          "file": "github/init",
+          "namedChilds": ["7p"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "7o",
+          "file": "github/init",
+          "namedChilds": ["7n"]
+        }
+      }
+    },
+    {
+      "name": "Local(share-list) lib/local-store",
+      "initialValue": {},
+      "unit": "store",
+      "type": "object",
+      "sid": "-z0r7nn",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "Local(share-list)",
+          "sid": "-z0r7nn",
+          "named": null,
+          "processed": true,
+          "unitId": "7s",
+          "file": "lib/local-store",
+          "createdBy": "createStore",
+          "namedChilds": ["7r"]
+        }
+      }
+    },
+    {
+      "name": "$currentShareId share/state",
+      "initialValue": null,
+      "unit": "store",
+      "type": "object",
+      "sid": "bqt5q6",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "$currentShareId",
+          "sid": "bqt5q6",
+          "named": null,
+          "processed": true,
+          "unitId": "7u",
+          "file": "share/state",
+          "createdBy": "createStore",
+          "namedChilds": ["7t"]
+        }
+      }
+    },
+    {
+      "name": "$shareDescription share/state",
+      "initialValue": "",
+      "unit": "store",
+      "type": "string",
+      "sid": "-k6z9lt",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "$shareDescription",
+          "sid": "-k6z9lt",
+          "named": null,
+          "processed": true,
+          "unitId": "7w",
+          "file": "share/state",
+          "createdBy": "createStore",
+          "namedChilds": ["7v"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "86",
+          "file": "graphql",
+          "namedChilds": ["85"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "84",
+          "file": "graphql",
+          "namedChilds": ["83"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "8g",
+          "file": "graphql",
+          "namedChilds": ["8f"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "8e",
+          "file": "graphql",
+          "namedChilds": ["8d"]
+        }
+      }
+    },
+    {
+      "name": "sharesWithUser share/init",
+      "initialValue": {
+        "shareList": {},
+        "githubUser": {
+          "databaseId": null,
+          "avatarUrl": "",
+          "name": "",
+          "url": ""
+        }
+      },
+      "unit": "store",
+      "type": "object",
+      "sid": "-nebwk",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "sharesWithUser",
+          "sid": "-nebwk",
+          "named": null,
+          "depsMap": {"source": {"shareList": "7s", "githubUser": "6i"}},
+          "processed": true,
+          "unitId": "8o",
+          "file": "share/init",
+          "createdBy": "combine",
+          "namedChilds": ["8n"]
+        }
+      }
+    },
+    {
+      "name": "sharesWithUser → *",
+      "initialValue": [],
+      "unit": "store",
+      "type": "object",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "sharesWithUser → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "8q",
+          "createdBy": "store.map",
+          "namedChilds": ["8p"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "92",
+          "file": "flow/index",
+          "namedChilds": ["91"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "90",
+          "file": "flow/index",
+          "namedChilds": ["8z"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "9c",
+          "file": "flow/index",
+          "namedChilds": ["9b"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "9a",
+          "file": "flow/index",
+          "namedChilds": ["99"]
+        }
+      }
+    },
+    {
+      "name": "typeHint flow/state",
+      "initialValue": null,
+      "unit": "store",
+      "type": "object",
+      "sid": "cgrmf8",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "typeHint",
+          "sid": "cgrmf8",
+          "named": null,
+          "processed": true,
+          "unitId": "9e",
+          "file": "flow/state",
+          "createdBy": "createStore",
+          "namedChilds": ["9d"]
+        }
+      }
+    },
+    {
+      "name": "typeErrors flow/state",
+      "initialValue": [],
+      "unit": "store",
+      "type": "object",
+      "sid": "-xm5saj",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "typeErrors",
+          "sid": "-xm5saj",
+          "named": null,
+          "processed": true,
+          "unitId": "9g",
+          "file": "flow/state",
+          "createdBy": "createStore",
+          "namedChilds": ["9f"]
+        }
+      }
+    },
+    {
+      "name": "typeHint → *",
+      "initialValue": "Loading...",
+      "unit": "store",
+      "type": "string",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "typeHint → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "9k",
+          "createdBy": "store.map",
+          "namedChilds": ["9j"]
+        }
+      }
+    },
+    {
+      "name": "graphite graphite/domain",
+      "initialValue": {},
+      "unit": "store",
+      "type": "object",
+      "sid": "-qd0qn3",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "graphite",
+          "sid": "-qd0qn3",
+          "named": null,
+          "processed": true,
+          "unitId": "9o",
+          "file": "graphite/domain",
+          "createdBy": "createStore",
+          "namedChilds": ["9n"]
+        }
+      }
+    },
+    {
+      "name": "graphite → *",
+      "initialValue": "{}",
+      "unit": "store",
+      "type": "string",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "graphite → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "9q",
+          "createdBy": "store.map",
+          "namedChilds": ["9p"]
+        }
+      }
+    },
+    {
+      "name": "$autoScrollLog features/logs/model",
+      "initialValue": true,
+      "unit": "store",
+      "type": "boolean",
+      "sid": "-tvztmm",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "$autoScrollLog",
+          "sid": "-tvztmm",
+          "named": null,
+          "depsMap": {"source": "9u"},
+          "processed": true,
+          "unitId": "a1",
+          "file": "features/logs/model",
+          "createdBy": "restore",
+          "namedChilds": ["a0"]
+        }
+      }
+    },
+    {
+      "name": "$logs features/logs/model",
+      "initialValue": [],
+      "unit": "store",
+      "type": "object",
+      "sid": "-tl5g9c",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "$logs",
+          "sid": "-tl5g9c",
+          "named": null,
+          "processed": true,
+          "unitId": "a3",
+          "file": "features/logs/model",
+          "createdBy": "createStore",
+          "namedChilds": ["a2"]
+        }
+      }
+    },
+    {
+      "name": "filename evaluator/index",
+      "initialValue": "repl.js",
+      "unit": "store",
+      "type": "string",
+      "sid": "dipcge",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "filename",
+          "sid": "dipcge",
+          "named": null,
+          "processed": true,
+          "unitId": "a5",
+          "file": "evaluator/index",
+          "createdBy": "createStore",
+          "namedChilds": ["a4"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "af",
+          "file": "evaluator/index",
+          "namedChilds": ["ae"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "ad",
+          "file": "evaluator/index",
+          "namedChilds": ["ac"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "ap",
+          "file": "evaluator/index",
+          "namedChilds": ["ao"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "an",
+          "file": "evaluator/index",
+          "namedChilds": ["am"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "az",
+          "file": "evaluator/index",
+          "namedChilds": ["ay"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "ax",
+          "file": "evaluator/index",
+          "namedChilds": ["aw"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "b9",
+          "file": "evaluator/index",
+          "namedChilds": ["b8"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "b7",
+          "file": "evaluator/index",
+          "namedChilds": ["b6"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "bj",
+          "file": "evaluator/index",
+          "namedChilds": ["bi"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "bh",
+          "file": "evaluator/index",
+          "namedChilds": ["bg"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "bt",
+          "file": "evaluator/index",
+          "namedChilds": ["bs"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "br",
+          "file": "evaluator/index",
+          "namedChilds": ["bq"]
+        }
+      }
+    },
+    {
+      "name": "version → *",
+      "initialValue": {"effector": {}, "@effector/babel-plugin": {}},
+      "unit": "store",
+      "type": "object",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "version → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "bv",
+          "createdBy": "store.map",
+          "namedChilds": ["bu"]
+        }
+      }
+    },
+    {
+      "name": "initStore editor/init",
+      "initialValue": {
+        "sourceCode": "import React from 'react'\nimport ReactDOM from 'react-dom'\nimport {createEffect, createStore, createEvent, forward} from 'effector'\nimport {useStore, useList} from 'effector-react'\n\nconst portalMounted = createEvent()\nconst portalUnmounted = createEvent()\n\nconst $portals = createStore({})\n  .on(portalMounted, (store, {name, children}) =>\n    Object.assign(store, {[name]: children})\n  )\n  .on(portalUnmounted, (store, {name}) => {\n    const newStore = {...store}\n    delete newStore[name]\n    return newStore\n  })\n\nfunction PortalOut({name}) {\n  return useStoreMap({\n    store: $portals,\n    keys: [name],\n    fn: (portals, [name]) => portals[name] || null,\n  })\n}\n\nconst PortalIn = createGate()\nconst prevPortalIn = PortalIn.state.map(console.log)\n\nsample({\n  source: PortalIn.state,\n  clock: PortalIn.open,\n  target: portalMounted,\n})\n\nsample({\n  source: PortalIn.state,\n  clock: PortalIn.close,\n  target: portalUnmounted,\n})\n\n//portalMounted.watch(console.log)\n//portalUnmounted.watch(console.log)\n\nfunction Child() {\n  const [show, setShow] = React.useState(false)\n  return (\n    <>\n      <button onClick={() => setShow(!show)}>display div</button>\n      {show ? 'show' : 'hide' }\n      {show && (\n        <PortalIn name=\"out\">\n          <div>hi man</div>\n        </PortalIn>\n      )}\n    </>\n  )\n}\nfunction App() {\n  return (\n    <>\n      <Child />\n      <PortalOut name=\"out\" />\n    </>\n  )\n}\n\nReactDOM.render(<App />, document.getElementById('root'))\n",
+        "versionLoader": {"effector": {}, "@effector/babel-plugin": {}},
+        "typechecker": null
+      },
+      "unit": "store",
+      "type": "object",
+      "sid": "-58m4sn",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "initStore",
+          "sid": "-58m4sn",
+          "named": null,
+          "depsMap": {
+            "source": {
+              "sourceCode": "4b",
+              "versionLoader": "bv",
+              "typechecker": "58"
+            }
+          },
+          "processed": true,
+          "unitId": "bz",
+          "file": "editor/init",
+          "createdBy": "combine",
+          "namedChilds": ["by"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "cb",
+          "file": "components/CodeMirrorPanel",
+          "namedChilds": ["ca"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "c9",
+          "file": "components/CodeMirrorPanel",
+          "namedChilds": ["c8"]
+        }
+      }
+    },
+    {
+      "name": "$isQueryMatches lib/media-query",
+      "initialValue": true,
+      "unit": "store",
+      "type": "boolean",
+      "sid": "-suc13",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "$isQueryMatches",
+          "sid": "-suc13",
+          "named": null,
+          "processed": true,
+          "unitId": "cf",
+          "file": "lib/media-query",
+          "createdBy": "createStore",
+          "namedChilds": ["ce"]
+        }
+      }
+    },
+    {
+      "name": "Local(current-tab) lib/local-store",
+      "initialValue": "dom",
+      "unit": "store",
+      "type": "string",
+      "sid": "-z0r7nn",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "Local(current-tab)",
+          "sid": "-z0r7nn",
+          "named": null,
+          "processed": true,
+          "unitId": "ch",
+          "file": "lib/local-store",
+          "createdBy": "createStore",
+          "namedChilds": ["cg"]
+        }
+      }
+    },
+    {
+      "name": "pending → *",
+      "initialValue": true,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "cs",
+          "createdBy": "store.map",
+          "namedChilds": ["cr"]
+        }
+      }
+    },
+    {
+      "name": "slug share/controller",
+      "initialValue": "",
+      "unit": "store",
+      "type": "string",
+      "sid": "-o08969",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "slug",
+          "sid": "-o08969",
+          "named": null,
+          "processed": true,
+          "unitId": "cv",
+          "file": "share/controller",
+          "createdBy": "createStore",
+          "namedChilds": ["cu"]
+        }
+      }
+    },
+    {
+      "name": "sharedUrl share/controller",
+      "initialValue": "",
+      "unit": "store",
+      "type": "string",
+      "sid": "-l9i9vy",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "sharedUrl",
+          "sid": "-l9i9vy",
+          "named": null,
+          "processed": true,
+          "unitId": "cx",
+          "file": "share/controller",
+          "createdBy": "createStore",
+          "namedChilds": ["cw"]
+        }
+      }
+    },
+    {
+      "name": "slug → *",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "slug → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "cz",
+          "createdBy": "store.map",
+          "namedChilds": ["cy"]
+        }
+      }
+    },
+    {
+      "name": "pending",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "pending",
+          "sid": null,
+          "named": "pending",
+          "processed": true,
+          "unitId": "da",
+          "file": "share/controller",
+          "namedChilds": ["d9"]
+        }
+      }
+    },
+    {
+      "name": "inFlight",
+      "initialValue": 0,
+      "unit": "store",
+      "type": "number",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "inFlight",
+          "sid": null,
+          "named": "inFlight",
+          "processed": true,
+          "unitId": "d8",
+          "file": "share/controller",
+          "namedChilds": ["d7"]
+        }
+      }
+    },
+    {
+      "name": "$isQueryMatches lib/media-query",
+      "initialValue": false,
+      "unit": "store",
+      "type": "boolean",
+      "sid": "-suc13",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "$isQueryMatches",
+          "sid": "-suc13",
+          "named": null,
+          "processed": true,
+          "unitId": "dg",
+          "file": "lib/media-query",
+          "createdBy": "createStore",
+          "namedChilds": ["df"]
+        }
+      }
+    },
+    {
+      "name": "$isQueryMatches lib/media-query",
+      "initialValue": true,
+      "unit": "store",
+      "type": "boolean",
+      "sid": "-suc13",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "$isQueryMatches",
+          "sid": "-suc13",
+          "named": null,
+          "processed": true,
+          "unitId": "dj",
+          "file": "lib/media-query",
+          "createdBy": "createStore",
+          "namedChilds": ["di"]
+        }
+      }
+    },
+    {
+      "name": "tab components/SecondanaryTabs",
+      "initialValue": "console",
+      "unit": "store",
+      "type": "string",
+      "sid": "a1so02",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "tab",
+          "sid": "a1so02",
+          "named": null,
+          "processed": true,
+          "unitId": "dl",
+          "file": "components/SecondanaryTabs",
+          "createdBy": "createStore",
+          "namedChilds": ["dk"]
+        }
+      }
+    },
+    {
+      "name": "typechecker → *",
+      "initialValue": "text/flow-jsx",
+      "unit": "store",
+      "type": "string",
+      "sid": null,
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "typechecker → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "dp",
+          "createdBy": "store.map",
+          "namedChilds": ["do"]
+        }
+      }
+    },
+    {
+      "name": "displayEditor view",
+      "initialValue": true,
+      "unit": "store",
+      "type": "boolean",
+      "sid": "-intf3n",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "displayEditor",
+          "sid": "-intf3n",
+          "named": null,
+          "depsMap": {"source": ["ch", "cf"]},
+          "processed": true,
+          "unitId": "dr",
+          "file": "view",
+          "createdBy": "combine",
+          "namedChilds": ["dq"]
+        }
+      }
+    },
+    {
+      "name": "$displayOutline view",
+      "initialValue": true,
+      "unit": "store",
+      "type": "boolean",
+      "sid": "d74va4",
+      "node": {
+        "meta": {
+          "unit": "store",
+          "name": "$displayOutline",
+          "sid": "d74va4",
+          "named": null,
+          "depsMap": {"source": ["ch", "cf"]},
+          "processed": true,
+          "unitId": "dt",
+          "file": "view",
+          "createdBy": "combine",
+          "namedChilds": ["ds"]
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "30",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "31",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "32",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "33",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "2z",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "36",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "34",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "performLint",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "performLint",
+          "sid": "2a1nik",
+          "named": null,
+          "processed": true,
+          "unitId": "38",
+          "file": "editor/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "changeSources",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "changeSources",
+          "sid": "wued6z",
+          "named": null,
+          "processed": true,
+          "unitId": "39",
+          "file": "editor/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "selectVersion",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "selectVersion",
+          "sid": "-b5ca3n",
+          "named": null,
+          "processed": true,
+          "unitId": "3a",
+          "file": "editor/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "codeSetCursor",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "codeSetCursor",
+          "sid": "lsqu8i",
+          "named": null,
+          "processed": true,
+          "unitId": "3b",
+          "file": "editor/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "codeCursorActivity",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "codeCursorActivity",
+          "sid": "-u1lvqz",
+          "named": null,
+          "processed": true,
+          "unitId": "3c",
+          "file": "editor/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "3f",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "3g",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "3h",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "3i",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "3e",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "3l",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "3j",
+          "file": "editor/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "saveShare",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "saveShare",
+          "sid": "c0r1y6",
+          "named": null,
+          "processed": true,
+          "unitId": "3n",
+          "file": "share/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "removeShare",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "removeShare",
+          "sid": "4po6o2",
+          "named": null,
+          "processed": true,
+          "unitId": "3o",
+          "file": "share/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "addShare",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "addShare",
+          "sid": "-7yc10f",
+          "named": null,
+          "processed": true,
+          "unitId": "3p",
+          "file": "share/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "3s",
+          "file": "share/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "3t",
+          "file": "share/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "3u",
+          "file": "share/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "3v",
+          "file": "share/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "3r",
+          "file": "share/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "3y",
+          "file": "share/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "3w",
+          "file": "share/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "setCurrentShareId",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "setCurrentShareId",
+          "sid": "-ayba4k",
+          "named": null,
+          "processed": true,
+          "unitId": "40",
+          "file": "share/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "copyToClipboard",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "copyToClipboard",
+          "sid": "-v4ulza",
+          "named": null,
+          "processed": true,
+          "unitId": "41",
+          "file": "share/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "handleInput",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "handleInput",
+          "sid": "-am9gyv",
+          "named": null,
+          "processed": true,
+          "unitId": "42",
+          "file": "share/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "handleInput → *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "handleInput → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "43",
+          "createdBy": "event.map"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "handleKeyDown",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "handleKeyDown",
+          "sid": "-j1k1sk",
+          "named": null,
+          "processed": true,
+          "unitId": "44",
+          "file": "share/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "handleKeyDown → *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "handleKeyDown → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "45",
+          "createdBy": "event.map"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "46",
+          "file": "editor/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "48",
+          "file": "editor/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "4a",
+          "file": "editor/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "4c",
+          "file": "editor/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "4e",
+          "file": "editor/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "flowToggleChange",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "flowToggleChange",
+          "sid": "myjzzh",
+          "named": null,
+          "processed": true,
+          "unitId": "4g",
+          "file": "settings/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "tsToggleChange",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "tsToggleChange",
+          "sid": "-34pdfm",
+          "named": null,
+          "processed": true,
+          "unitId": "4h",
+          "file": "settings/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "typeHoverToggleChange",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "typeHoverToggleChange",
+          "sid": "9gwv08",
+          "named": null,
+          "processed": true,
+          "unitId": "4i",
+          "file": "settings/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "clickPrettify",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "clickPrettify",
+          "sid": "-40lmo7",
+          "named": null,
+          "processed": true,
+          "unitId": "4j",
+          "file": "settings/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "4m",
+          "file": "settings/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "4n",
+          "file": "settings/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "4o",
+          "file": "settings/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "4p",
+          "file": "settings/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "4l",
+          "file": "settings/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "4s",
+          "file": "settings/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "4q",
+          "file": "settings/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "enableAutoScroll",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "enableAutoScroll",
+          "sid": "sdv8yv",
+          "named": null,
+          "processed": true,
+          "unitId": "4u",
+          "file": "settings/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "disableAutoScroll",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "disableAutoScroll",
+          "sid": "-55xoyo",
+          "named": null,
+          "processed": true,
+          "unitId": "4v",
+          "file": "settings/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "51",
+          "file": "settings/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "53",
+          "file": "settings/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "55",
+          "file": "settings/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "57",
+          "file": "settings/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "59",
+          "file": "settings/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "5b"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "5d"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "clock",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "clock",
+          "sid": "-z2ufpo",
+          "named": null,
+          "processed": true,
+          "unitId": "5f",
+          "file": "settings/init",
+          "createdBy": "guard"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done → *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5i",
+          "createdBy": "event.map"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInvoke",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInvoke",
+          "sid": "wr5tvh",
+          "named": null,
+          "processed": true,
+          "unitId": "5j",
+          "file": "realm/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmStatus",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmStatus",
+          "sid": "-7rux1h",
+          "named": null,
+          "processed": true,
+          "unitId": "5k",
+          "file": "realm/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "* → realmStatus",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "* → realmStatus",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5l",
+          "createdBy": "event.prepend"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "* → realmStatus",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "* → realmStatus",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5m",
+          "createdBy": "event.prepend"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "* → realmStatus",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "* → realmStatus",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5n",
+          "createdBy": "event.prepend"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInvoke → *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInvoke → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5o",
+          "createdBy": "event.map"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInvoke → * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInvoke → * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5p",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInvoke → * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInvoke → * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5q",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInvoke → * →? * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInvoke → * →? * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5r",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInvoke → * →? * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInvoke → * →? * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5s",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInvoke → * →? * →? * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInvoke → * →? * →? * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5t",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInvoke → * →? * →? * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInvoke → * →? * →? * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5u",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInvoke → * →? * →? * →? * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInvoke → * →? * →? * →? * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5v",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInvoke → * →? * →? * →? * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInvoke → * →? * →? * →? * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "5w",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmInterval",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmInterval",
+          "sid": "jijxga",
+          "named": null,
+          "processed": true,
+          "unitId": "5x",
+          "file": "realm/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmTimeout",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmTimeout",
+          "sid": "-7nj06f",
+          "named": null,
+          "processed": true,
+          "unitId": "5y",
+          "file": "realm/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmListener",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmListener",
+          "sid": "unalw",
+          "named": null,
+          "processed": true,
+          "unitId": "5z",
+          "file": "realm/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmRemoveListener",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmRemoveListener",
+          "sid": "-qhp1t6",
+          "named": null,
+          "processed": true,
+          "unitId": "60",
+          "file": "realm/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmClearInterval",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmClearInterval",
+          "sid": "-tc96ms",
+          "named": null,
+          "processed": true,
+          "unitId": "61",
+          "file": "realm/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmClearTimeout",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmClearTimeout",
+          "sid": "lbznso",
+          "named": null,
+          "processed": true,
+          "unitId": "62",
+          "file": "realm/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmClearNode",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmClearNode",
+          "sid": "lxr5cc",
+          "named": null,
+          "processed": true,
+          "unitId": "63",
+          "file": "realm/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmComponent",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmComponent",
+          "sid": "-3ton5y",
+          "named": null,
+          "processed": true,
+          "unitId": "64",
+          "file": "realm/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "65",
+          "file": "realm/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "67",
+          "file": "realm/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "69",
+          "file": "realm/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "6b",
+          "file": "realm/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "6d",
+          "file": "lib/local-store"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "6f",
+          "file": "lib/local-store"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "6h",
+          "file": "lib/local-store"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "login",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "login",
+          "sid": "-vp3bne",
+          "named": null,
+          "processed": true,
+          "unitId": "6j",
+          "file": "github/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "logout",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "logout",
+          "sid": "-l1ontn",
+          "named": null,
+          "processed": true,
+          "unitId": "6k",
+          "file": "github/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "setToken",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "setToken",
+          "sid": "-69buxd",
+          "named": null,
+          "processed": true,
+          "unitId": "6l",
+          "file": "github/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "setApiKeyRemember",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "setApiKeyRemember",
+          "sid": "-9gghg4",
+          "named": null,
+          "processed": true,
+          "unitId": "6m",
+          "file": "github/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "6p",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "6q",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "6r",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "6s",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "6o",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "6v",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "6t",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "6z",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "70",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "71",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "72",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "6y",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "75",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "73",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "79",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "7a",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "7b",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "7c",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "78",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "7f",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "7d",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "7j",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "7k",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "7l",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "7m",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "7i",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "7p",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "7n",
+          "file": "github/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "7r",
+          "file": "lib/local-store"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "7t",
+          "file": "share/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "7v",
+          "file": "share/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "7z",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "80",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "81",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "82",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "7y",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "85",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "83",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "89",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "8a",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "8b",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "8c",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "88",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "8f",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "8d",
+          "file": "graphql"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "handleKeyDown → * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "handleKeyDown → * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "8j",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "handleKeyDown → * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "handleKeyDown → * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "8k",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "handleKeyDown → * →? * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "handleKeyDown → * →? * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "8l",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "handleKeyDown → * →? * →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "handleKeyDown → * →? * →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "8m",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "8n",
+          "file": "share/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "8p"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showTypeNode",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showTypeNode",
+          "sid": "7cwdhz",
+          "named": null,
+          "processed": true,
+          "unitId": "8r",
+          "file": "flow/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "hideTypeNode",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "hideTypeNode",
+          "sid": "-t8vj9h",
+          "named": null,
+          "processed": true,
+          "unitId": "8s",
+          "file": "flow/index",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "8v",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "8w",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "8x",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "8y",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "8u",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "91",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "8z",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "95",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "96",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "97",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "98",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "94",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "9b",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "99",
+          "file": "flow/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "9d",
+          "file": "flow/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "9f",
+          "file": "flow/state"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "guard",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "guard",
+          "sid": "-n18qpu",
+          "named": null,
+          "inlined": true,
+          "processed": true,
+          "unitId": "9h",
+          "file": "flow/init",
+          "createdBy": "guard"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "guard",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "guard",
+          "sid": "-mlui3q",
+          "named": null,
+          "inlined": true,
+          "processed": true,
+          "unitId": "9i",
+          "file": "flow/init",
+          "createdBy": "guard"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "9j"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "guard",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "guard",
+          "sid": "-m3pait",
+          "named": null,
+          "inlined": true,
+          "processed": true,
+          "unitId": "9l",
+          "file": "flow/init",
+          "createdBy": "guard"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "reset graphite state",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "reset graphite state",
+          "sid": "-q8vqcz",
+          "named": null,
+          "processed": true,
+          "unitId": "9m",
+          "file": "graphite/domain",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "9n",
+          "file": "graphite/domain"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "9p"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "sourcesChanged",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "sourcesChanged",
+          "sid": "-fz6kl0",
+          "named": null,
+          "processed": true,
+          "unitId": "9r",
+          "file": "features/logs/requirements",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "versionChanged",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "versionChanged",
+          "sid": "-taxlmf",
+          "named": null,
+          "processed": true,
+          "unitId": "9s",
+          "file": "features/logs/requirements",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmActiveChanged",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmActiveChanged",
+          "sid": "-a06xls",
+          "named": null,
+          "processed": true,
+          "unitId": "9t",
+          "file": "features/logs/requirements",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "autoScrollLogChanged",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "autoScrollLogChanged",
+          "sid": "-wwh0ke",
+          "named": null,
+          "processed": true,
+          "unitId": "9u",
+          "file": "features/logs/requirements",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "logsClear",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "logsClear",
+          "sid": "y37f5s",
+          "named": null,
+          "processed": true,
+          "unitId": "9v",
+          "file": "features/logs/model",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "logHappened",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "logHappened",
+          "sid": "-kuqj1f",
+          "named": null,
+          "processed": true,
+          "unitId": "9w",
+          "file": "features/logs/model",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "logHappened → *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "logHappened → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "9x",
+          "createdBy": "event.map"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "autoScrollEnableClicked",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "autoScrollEnableClicked",
+          "sid": "-hwfdn5",
+          "named": null,
+          "processed": true,
+          "unitId": "9y",
+          "file": "features/logs/model",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "autoScrollDisableClicked",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "autoScrollDisableClicked",
+          "sid": "-6r4w7v",
+          "named": null,
+          "processed": true,
+          "unitId": "9z",
+          "file": "features/logs/model",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "a0",
+          "file": "features/logs/model"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "a2",
+          "file": "features/logs/model"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "a4",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "a8",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "a9",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "aa",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "ab",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "a7",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "ae",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "ac",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "ai",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "aj",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "ak",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "al",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "ah",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "ao",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "am",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "as",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "at",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "au",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "av",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "ar",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "ay",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "aw",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "b2",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "b3",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "b4",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "b5",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "b1",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "b8",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "b6",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "bc",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "bd",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "be",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "bf",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "bb",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "bi",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "bg",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "bm",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "bn",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "bo",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "bp",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "bl",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "bs",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "bq",
+          "file": "evaluator/index"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "bu"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "bw",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "bw",
+          "sid": "-9028ji",
+          "named": null,
+          "inlined": true,
+          "processed": true,
+          "unitId": "bw",
+          "file": "editor/init",
+          "createdBy": "sample"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "changeSources → *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "changeSources → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "bx",
+          "createdBy": "event.map"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "by",
+          "file": "editor/init"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "realmStatus → *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "realmStatus → *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "c0",
+          "createdBy": "event.map"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "setCursor",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "setCursor",
+          "sid": "-ot12ph",
+          "named": null,
+          "processed": true,
+          "unitId": "c1",
+          "file": "components/CodeMirrorPanel",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "c4",
+          "file": "components/CodeMirrorPanel"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "c5",
+          "file": "components/CodeMirrorPanel"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "c6",
+          "file": "components/CodeMirrorPanel"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "c7",
+          "file": "components/CodeMirrorPanel"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "c3",
+          "file": "components/CodeMirrorPanel"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "ca",
+          "file": "components/CodeMirrorPanel"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "c8",
+          "file": "components/CodeMirrorPanel"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "performLint",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "performLint",
+          "sid": "-b2947u",
+          "named": null,
+          "processed": true,
+          "unitId": "cc",
+          "file": "components/CodeMirrorPanel",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "queryChanged",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "queryChanged",
+          "sid": "-dyeyhc",
+          "named": null,
+          "processed": true,
+          "unitId": "cd",
+          "file": "lib/media-query",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "ce",
+          "file": "lib/media-query"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "cg",
+          "file": "lib/local-store"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showOutline",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showOutline",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "ci",
+          "createdBy": "createApi"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showEditor",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showEditor",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "cj",
+          "createdBy": "createApi"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showGraphite",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showGraphite",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "ck",
+          "createdBy": "createApi"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showDOM",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showDOM",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "cl",
+          "createdBy": "createApi"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showShare",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showShare",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "cm",
+          "createdBy": "createApi"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showSettings",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showSettings",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "cn",
+          "createdBy": "createApi"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showGist",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showGist",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "co",
+          "createdBy": "createApi"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showErrors",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showErrors",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "cp",
+          "createdBy": "createApi"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "pressCtrlS",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "pressCtrlS",
+          "sid": "-vzxevn",
+          "named": null,
+          "processed": true,
+          "unitId": "cq",
+          "file": "share/controller",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "cr"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "from",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "from",
+          "sid": "f13g5q",
+          "named": null,
+          "processed": true,
+          "unitId": "ct",
+          "file": "share/controller",
+          "createdBy": "guard"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "cu",
+          "file": "share/controller"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "cw",
+          "file": "share/controller"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "cy"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "clickShare",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "clickShare",
+          "sid": "-9cvo4h",
+          "named": null,
+          "processed": true,
+          "unitId": "d0",
+          "file": "share/controller",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "done",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "done",
+          "sid": null,
+          "named": "done",
+          "processed": true,
+          "unitId": "d3",
+          "file": "share/controller"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail",
+          "sid": null,
+          "named": "fail",
+          "processed": true,
+          "unitId": "d4",
+          "file": "share/controller"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "doneData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "doneData",
+          "sid": null,
+          "named": "doneData",
+          "processed": true,
+          "unitId": "d5",
+          "file": "share/controller"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "failData",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "failData",
+          "sid": null,
+          "named": "failData",
+          "processed": true,
+          "unitId": "d6",
+          "file": "share/controller"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "finally",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "finally",
+          "sid": null,
+          "named": "finally",
+          "processed": true,
+          "unitId": "d2",
+          "file": "share/controller"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "d9",
+          "file": "share/controller"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "d7",
+          "file": "share/controller"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "fail →? *",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "fail →? *",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "db",
+          "createdBy": "event.filter"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "queryChanged",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "queryChanged",
+          "sid": "-dyeyhc",
+          "named": null,
+          "processed": true,
+          "unitId": "de",
+          "file": "lib/media-query",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "df",
+          "file": "lib/media-query"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "queryChanged",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "queryChanged",
+          "sid": "-dyeyhc",
+          "named": null,
+          "processed": true,
+          "unitId": "dh",
+          "file": "lib/media-query",
+          "createdBy": "createEvent"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "di",
+          "file": "lib/media-query"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "dk",
+          "file": "components/SecondanaryTabs"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showConsole",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showConsole",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "dm",
+          "createdBy": "createApi"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "showOutline",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "showOutline",
+          "sid": null,
+          "named": null,
+          "processed": true,
+          "unitId": "dn",
+          "createdBy": "createApi"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "do"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "dq",
+          "file": "view"
+        }
+      }
+    },
+    {
+      "unit": "event",
+      "name": "updates",
+      "node": {
+        "meta": {
+          "unit": "event",
+          "name": "updates",
+          "sid": null,
+          "named": "updates",
+          "processed": true,
+          "unitId": "ds",
+          "file": "view"
+        }
+      }
+    },
+    {
+      "name": "evalEffect",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "evalEffect",
+          "sid": "-ozxmy2",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "2y",
+          "file": "editor/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["30", "31", "32", "33", "2z", "37", "35"]
+        }
+      }
+    },
+    {
+      "name": "codeMarkLine",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "codeMarkLine",
+          "sid": "1v6f8u",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "3d",
+          "file": "editor/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["3f", "3g", "3h", "3i", "3e", "3m", "3k"]
+        }
+      }
+    },
+    {
+      "name": "getShareList",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "getShareList",
+          "sid": "dfdb77",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "3q",
+          "file": "share/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["3s", "3t", "3u", "3v", "3r", "3z", "3x"]
+        }
+      }
+    },
+    {
+      "name": "prettier",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "prettier",
+          "sid": "vok931",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "4k",
+          "file": "settings/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["4m", "4n", "4o", "4p", "4l", "4t", "4r"]
+        }
+      }
+    },
+    {
+      "name": "auth",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "auth",
+          "sid": "-82nto3",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "6n",
+          "file": "github/init",
+          "createdBy": "createEffect",
+          "namedChilds": ["6p", "6q", "6r", "6s", "6o", "6w", "6u"]
+        }
+      }
+    },
+    {
+      "name": "gqlQuery",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "gqlQuery",
+          "sid": "pufajr",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "6x",
+          "file": "github/init",
+          "createdBy": "createEffect",
+          "namedChilds": ["6z", "70", "71", "72", "6y", "76", "74"]
+        }
+      }
+    },
+    {
+      "name": "authorizedRequest",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "authorizedRequest",
+          "sid": "-eiq6cp",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "77",
+          "file": "github/init",
+          "createdBy": "attach",
+          "namedChilds": ["79", "7a", "7b", "7c", "78", "7g", "7e"]
+        }
+      }
+    },
+    {
+      "name": "createGqlQuery",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "createGqlQuery",
+          "sid": "-qtj4ao",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "7h",
+          "file": "github/init",
+          "createdBy": "attach",
+          "namedChilds": ["7j", "7k", "7l", "7m", "7i", "7q", "7o"]
+        }
+      }
+    },
+    {
+      "name": "share code",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "share code",
+          "sid": "52bg9t",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "7x",
+          "file": "graphql",
+          "createdBy": "createEffect",
+          "namedChilds": ["7z", "80", "81", "82", "7y", "86", "84"]
+        }
+      }
+    },
+    {
+      "name": "shareCode",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "shareCode",
+          "sid": "-kjefty",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "87",
+          "file": "graphql",
+          "createdBy": "attach",
+          "namedChilds": ["89", "8a", "8b", "8c", "88", "8g", "8e"]
+        }
+      }
+    },
+    {
+      "name": "typeAtPos",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "typeAtPos",
+          "sid": "-ipddp7",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "8t",
+          "file": "flow/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["8v", "8w", "8x", "8y", "8u", "92", "90"]
+        }
+      }
+    },
+    {
+      "name": "checkContent",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "checkContent",
+          "sid": "t8fwn2",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "93",
+          "file": "flow/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["95", "96", "97", "98", "94", "9c", "9a"]
+        }
+      }
+    },
+    {
+      "name": "fetch effector",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "fetch effector",
+          "sid": "dxxted",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "a6",
+          "file": "evaluator/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["a8", "a9", "aa", "ab", "a7", "af", "ad"]
+        }
+      }
+    },
+    {
+      "name": "fetch babel plugin",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "fetch babel plugin",
+          "sid": "mkzkr1",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "ag",
+          "file": "evaluator/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["ai", "aj", "ak", "al", "ah", "ap", "an"]
+        }
+      }
+    },
+    {
+      "name": "fetch effector-react",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "fetch effector-react",
+          "sid": "-ccgmyy",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "aq",
+          "file": "evaluator/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["as", "at", "au", "av", "ar", "az", "ax"]
+        }
+      }
+    },
+    {
+      "name": "fetchEffectorDom",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "fetchEffectorDom",
+          "sid": "-wtggkh",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "b0",
+          "file": "evaluator/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["b2", "b3", "b4", "b5", "b1", "b9", "b7"]
+        }
+      }
+    },
+    {
+      "name": "fetchEffectorFork",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "fetchEffectorFork",
+          "sid": "hmpl5v",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "ba",
+          "file": "evaluator/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["bc", "bd", "be", "bf", "bb", "bj", "bh"]
+        }
+      }
+    },
+    {
+      "name": "fetchEffectorReactSSR",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "fetchEffectorReactSSR",
+          "sid": "hfr6u1",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "bk",
+          "file": "evaluator/index",
+          "createdBy": "createEffect",
+          "namedChilds": ["bm", "bn", "bo", "bp", "bl", "bt", "br"]
+        }
+      }
+    },
+    {
+      "name": "markLine",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "markLine",
+          "sid": "-bq6ace",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "c2",
+          "file": "components/CodeMirrorPanel",
+          "createdBy": "createEffect",
+          "namedChilds": ["c4", "c5", "c6", "c7", "c3", "cb", "c9"]
+        }
+      }
+    },
+    {
+      "name": "sharing url",
+      "unit": "effect",
+      "node": {
+        "meta": {
+          "unit": "effect",
+          "name": "sharing url",
+          "sid": "2sig7c",
+          "named": null,
+          "onCopy": ["runner"],
+          "processed": true,
+          "unitId": "d1",
+          "file": "share/controller",
+          "createdBy": "createEffect",
+          "namedChilds": ["d3", "d4", "d5", "d6", "d2", "da", "d8"]
+        }
+      }
+    }
+  ]
+}
